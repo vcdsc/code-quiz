@@ -24,7 +24,7 @@ In order to achieve the goals outlined in the description above, a certain numbe
     - [ ] User gets a "Correct" alert. \*
   - [ ] If answer is incorrect:
     - [ ] (User gets an "Incorrect" alert. \*
-    - [ ] User gets a time deduction (15 seconds).
+    - [ ] User gets a time deduction (10 seconds).
 - [ ] If time runs out, "Game Over".
 - [ ] Remaining time once questions are through is User final score.
 - [ ] User should be able to "Submit" their initials into the High Scores page.
