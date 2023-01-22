@@ -6,6 +6,7 @@ var divChoices = document.getElementById("choices");
 var divEndScreen = document.getElementById("end-screen");
 
 var currentQuestion = 0;
+var userScore = 60;
 
 function setElementHidden(element) {
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
@@ -29,12 +30,23 @@ function renderEndScreen() {
 }
 
 function nextQuestion(event) {
+  var userAnswer = event.target.getAttribute("data-answer");
+  console.log("userAnswer", userAnswer);
+
+  var correctAnswer = questions[currentQuestion].answer;
+
+  if (userAnswer !== correctAnswer) {
+    userScore -= 10;
+  }
+
   if (questions.length - 1 !== currentQuestion) {
     currentQuestion++;
     renderQuestion(questions[currentQuestion]);
   } else {
     renderEndScreen();
   }
+
+  console.log(userScore);
 }
 
 startQuizButton.addEventListener("click", startQuiz);
@@ -48,6 +60,7 @@ function renderQuestion(question) {
     var choice = question.choices[i];
     var button = document.createElement("button");
     button.textContent = `${i + 1} ${choice}`;
+    button.setAttribute("data-answer", choice);
     divChoices.appendChild(button);
   }
 }
