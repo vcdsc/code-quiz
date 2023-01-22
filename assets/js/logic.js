@@ -8,6 +8,7 @@ var spanTime = document.getElementById("time");
 
 var currentQuestion = 0;
 var userScore = 60;
+var timer;
 
 function setElementHidden(element) {
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
@@ -24,9 +25,11 @@ function startQuiz(event) {
   setElementVisible(divQuestions);
   renderQuestion(questions[currentQuestion]);
   spanTime.textContent = userScore;
+  timer = setInterval(countdown, 1000);
 }
 
 function renderEndScreen() {
+  clearInterval(timer);
   setElementHidden(divQuestions);
   setElementVisible(divEndScreen);
 }
@@ -49,8 +52,6 @@ function nextQuestion(event) {
   } else {
     renderEndScreen();
   }
-
-  console.log(userScore, spanTime);
 }
 
 startQuizButton.addEventListener("click", startQuiz);
@@ -66,5 +67,14 @@ function renderQuestion(question) {
     button.textContent = `${i + 1} ${choice}`;
     button.setAttribute("data-answer", choice);
     divChoices.appendChild(button);
+  }
+}
+
+function countdown() {
+  if (userScore <= 0) {
+    renderEndScreen();
+  } else {
+    userScore--;
+    spanTime.textContent = userScore;
   }
 }
