@@ -4,6 +4,7 @@ var divStartScreen = document.getElementById("start-screen");
 var questionTitle = document.getElementById("question-title");
 var divChoices = document.getElementById("choices");
 var divEndScreen = document.getElementById("end-screen");
+var spanTime = document.getElementById("time");
 
 var currentQuestion = 0;
 var userScore = 60;
@@ -22,6 +23,7 @@ function startQuiz(event) {
   setElementHidden(divStartScreen);
   setElementVisible(divQuestions);
   renderQuestion(questions[currentQuestion]);
+  spanTime.textContent = userScore;
 }
 
 function renderEndScreen() {
@@ -37,16 +39,18 @@ function nextQuestion(event) {
 
   if (userAnswer !== correctAnswer) {
     userScore -= 10;
+    spanTime.textContent = userScore;
   }
 
   if (questions.length - 1 !== currentQuestion) {
+    spanTime.textContent = userScore;
     currentQuestion++;
     renderQuestion(questions[currentQuestion]);
   } else {
     renderEndScreen();
   }
 
-  console.log(userScore);
+  console.log(userScore, spanTime);
 }
 
 startQuizButton.addEventListener("click", startQuiz);
