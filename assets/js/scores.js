@@ -1,4 +1,5 @@
 var highscoresList = document.getElementById("highscores");
+var clearHighscoresButton = document.getElementById("clear");
 
 var savedScores = JSON.parse(localStorage.getItem("scores"));
 
@@ -16,3 +17,11 @@ function renderHighscores() {
 }
 
 renderHighscores();
+
+function clearHighscores(event) {
+  localStorage.clear();
+  savedScores = [];
+  renderHighscores();
+}
+
+clearHighscoresButton.addEventListener("click", clearHighscores);
