@@ -103,7 +103,7 @@ function addToHighScores(event) {
     scores = storedHighscores;
   }
 
-  scores.push(userInitials);
+  scores.push(`User: ${userInitials} Points: ${userScore}`);
   storeScores();
   window.location.href = "/highscores.html";
 }
