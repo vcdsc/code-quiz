@@ -5,6 +5,7 @@ var questionTitle = document.getElementById("question-title");
 var divChoices = document.getElementById("choices");
 var divEndScreen = document.getElementById("end-screen");
 var spanTime = document.getElementById("time");
+var spanFinalScore = document.getElementById("final-score");
 
 var currentQuestion = 0;
 var userScore = 60;
@@ -32,6 +33,7 @@ function renderEndScreen() {
   clearInterval(timer);
   setElementHidden(divQuestions);
   setElementVisible(divEndScreen);
+  spanFinalScore.textContent = userScore;
 }
 
 function nextQuestion(event) {
@@ -65,7 +67,7 @@ function renderQuestion(question) {
     var choice = question.choices[i];
     var button = document.createElement("button");
     console.log("button", button, button.target);
-    button.textContent = `${i + 1} ${choice}`;
+    button.textContent = `${i + 1}. ${choice}`;
     button.setAttribute("data-answer", choice);
     divChoices.appendChild(button);
   }
