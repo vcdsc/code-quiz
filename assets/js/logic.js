@@ -15,6 +15,9 @@ var timer;
 
 var scores = [];
 
+var correctSound = new Audio("/assets/sfx/correct.wav");
+var incorrectSound = new Audio("/assets/sfx/incorrect.wav");
+
 function setElementHidden(element) {
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
   element.classList.add("hide");
@@ -47,8 +50,11 @@ function nextQuestion(event) {
   var correctAnswer = questions[currentQuestion].answer;
 
   if (userAnswer !== correctAnswer) {
+    incorrectSound.play();
     userScore -= 10;
     spanTime.textContent = userScore;
+  } else {
+    correctSound.play();
   }
 
   if (questions.length - 1 !== currentQuestion) {
