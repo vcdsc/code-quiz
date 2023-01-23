@@ -36,7 +36,7 @@ function renderEndScreen() {
 
 function nextQuestion(event) {
   var userAnswer = event.target.getAttribute("data-answer");
-  console.log("userAnswer", userAnswer);
+  //   console.log("userAnswer", userAnswer);
 
   var correctAnswer = questions[currentQuestion].answer;
 
@@ -64,6 +64,7 @@ function renderQuestion(question) {
   for (var i = 0; i < question.choices.length; i++) {
     var choice = question.choices[i];
     var button = document.createElement("button");
+    console.log("button", button, button.target);
     button.textContent = `${i + 1} ${choice}`;
     button.setAttribute("data-answer", choice);
     divChoices.appendChild(button);
@@ -78,3 +79,5 @@ function countdown() {
     spanTime.textContent = userScore;
   }
 }
+
+function soundEffects() {}
