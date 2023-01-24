@@ -3,6 +3,8 @@ var startQuizButton = document.getElementById("start");
 var questionsScreen = document.getElementById("questions");
 var questionTitle = document.getElementById("question-title");
 var choices = document.getElementById("choices");
+var correctChoice = document.getElementById("correct");
+var incorrectChoice = document.getElementById("incorrect");
 var endScreen = document.getElementById("end-screen");
 var timeOnClock = document.getElementById("time");
 var finalScore = document.getElementById("final-score");
@@ -55,17 +57,27 @@ function renderQuestion(question) {
   }
 }
 
+function showChoiceStatus(element) {
+  setElementVisible(element);
+
+  setTimeout(function () {
+    setElementHidden(element);
+  }, 250);
+}
+
 function renderNextQuestion(event) {
   var userAnswer = event.target.getAttribute("data-answer");
 
   var correctAnswer = questions[currentQuestion].answer;
 
   if (userAnswer !== correctAnswer) {
+    showChoiceStatus(incorrectChoice);
     incorrectSound.play();
     userScore -= 10;
     timeOnClock.textContent = userScore;
     choices.innerHTML = "";
   } else {
+    showChoiceStatus(correctChoice);
     correctSound.play();
   }
 
