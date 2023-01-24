@@ -1,7 +1,7 @@
 var highscoresList = document.getElementById("highscores");
 var clearHighscoresButton = document.getElementById("clear");
 
-var savedScores = JSON.parse(localStorage.getItem("scores"));
+var savedScores = JSON.parse(localStorage.getItem("scores")) || [];
 
 function renderHighscores() {
   highscoresList.innerHTML = "";

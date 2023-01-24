@@ -101,7 +101,7 @@ function addToHighScores(event) {
 
   var userInitials = inputInitialsForm.value.trim();
 
-  var storedHighscores = JSON.parse(localStorage.getItem("scores"));
+  var storedHighscores = JSON.parse(localStorage.getItem("scores")) || [];
 
   if (storedHighscores !== null) {
     scores = storedHighscores;
