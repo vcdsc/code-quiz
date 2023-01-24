@@ -76,6 +76,11 @@ List of pages consulted in the making of this project:
 - [`JSON.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
 - [`Window.localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
+
+## Quick Demo
+
+https://user-images.githubusercontent.com/117476319/214314431-96d254a9-074b-4ac8-89c0-eb5985e4a383.mov
+
 ## GitHub Pages
 
 Deployed version of this project can be seen [here](https://vcdsc.github.io/code-quiz/).
