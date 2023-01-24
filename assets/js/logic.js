@@ -1,11 +1,11 @@
-var divQuestions = document.getElementById("questions");
+var startScreen = document.getElementById("start-screen");
 var startQuizButton = document.getElementById("start");
-var divStartScreen = document.getElementById("start-screen");
+var questionsScreen = document.getElementById("questions");
 var questionTitle = document.getElementById("question-title");
-var divChoices = document.getElementById("choices");
-var divEndScreen = document.getElementById("end-screen");
-var spanTime = document.getElementById("time");
-var spanFinalScore = document.getElementById("final-score");
+var choices = document.getElementById("choices");
+var endScreen = document.getElementById("end-screen");
+var timeOnClock = document.getElementById("time");
+var finalScore = document.getElementById("final-score");
 var inputInitialsForm = document.getElementById("initials");
 var initialsSubmitButton = document.getElementById("submit");
 
@@ -15,11 +15,10 @@ var timer;
 
 var scores = [];
 
-var correctSound = new Audio("/assets/sfx/correct.wav");
-var incorrectSound = new Audio("/assets/sfx/incorrect.wav");
+var correctSound = new Audio("./assets/sfx/correct.wav");
+var incorrectSound = new Audio("./assets/sfx/incorrect.wav");
 
 function setElementHidden(element) {
-  // https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
   element.classList.add("hide");
 }
 
@@ -29,36 +28,49 @@ function setElementVisible(element) {
 
 function startQuiz(event) {
   event.preventDefault();
-  setElementHidden(divStartScreen);
-  setElementVisible(divQuestions);
+  setElementHidden(startScreen);
+  setElementVisible(questionsScreen);
   renderQuestion(questions[currentQuestion]);
-  spanTime.textContent = userScore;
+  timeOnClock.textContent = userScore;
   timer = setInterval(countdown, 1000);
 }
 
 function renderEndScreen() {
   clearInterval(timer);
-  setElementHidden(divQuestions);
-  setElementVisible(divEndScreen);
-  spanFinalScore.textContent = userScore;
+  setElementHidden(questionsScreen);
+  setElementVisible(endScreen);
+  finalScore.textContent = userScore;
 }
 
-function nextQuestion(event) {
+function renderQuestion(question) {
+  questionTitle.textContent = question.title;
+  choices.innerHTML = "";
+
+  for (var i = 0; i < question.choices.length; i++) {
+    var choice = question.choices[i];
+    var button = document.createElement("button");
+    button.textContent = `${i + 1}. ${choice}`;
+    button.setAttribute("data-answer", choice);
+    choices.appendChild(button);
+  }
+}
+
+function renderNextQuestion(event) {
   var userAnswer = event.target.getAttribute("data-answer");
-  //   console.log("userAnswer", userAnswer);
 
   var correctAnswer = questions[currentQuestion].answer;
 
   if (userAnswer !== correctAnswer) {
     incorrectSound.play();
     userScore -= 10;
-    spanTime.textContent = userScore;
+    timeOnClock.textContent = userScore;
+    choices.innerHTML = "";
   } else {
     correctSound.play();
   }
 
   if (questions.length - 1 !== currentQuestion) {
-    spanTime.textContent = userScore;
+    timeOnClock.textContent = userScore;
     currentQuestion++;
     renderQuestion(questions[currentQuestion]);
   } else {
@@ -67,28 +79,14 @@ function nextQuestion(event) {
 }
 
 startQuizButton.addEventListener("click", startQuiz);
-divChoices.addEventListener("click", nextQuestion);
-
-function renderQuestion(question) {
-  questionTitle.textContent = question.title;
-  divChoices.innerHTML = "";
-
-  for (var i = 0; i < question.choices.length; i++) {
-    var choice = question.choices[i];
-    var button = document.createElement("button");
-    // console.log("button", button, button.target);
-    button.textContent = `${i + 1}. ${choice}`;
-    button.setAttribute("data-answer", choice);
-    divChoices.appendChild(button);
-  }
-}
+choices.addEventListener("click", renderNextQuestion);
 
 function countdown() {
   if (userScore <= 0) {
     renderEndScreen();
   } else {
     userScore--;
-    spanTime.textContent = userScore;
+    timeOnClock.textContent = userScore;
   }
 }
 
@@ -108,8 +106,12 @@ function addToHighScores(event) {
   if (storedHighscores !== null) {
     scores = storedHighscores;
   }
+  if (!userInitials) {
+    userInitials = "anonymous";
+    scores = storedHighscores;
+  }
 
   scores.push(`User: ${userInitials} Points: ${userScore}`);
   storeScores();
-  window.location.href = "/highscores.html";
+  window.location.href = "highscores.html";
 }
