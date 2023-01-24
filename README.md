@@ -64,11 +64,15 @@ List of pages consulted in the making of this project:
 
 - [`Document.getElementById()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById)
 - [`Element.classList`](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
+- [`Document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+- [`Node.textContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
 - [`Element.setAttribute()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute)
+- [`Element.getAttribute()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute)
 - [`Node.appendChild()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
 - [`EventTarget.addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
 - [`Event.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault)
-- [`setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
+- [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
+- [`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
 - [`JSON.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
 - [`Window.localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
